@@ -530,7 +530,7 @@ html.js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0
   color: var(--ink-soft);
   margin: -0.4rem 0 2.2rem;
 }
-.featured-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.featured-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
 .featured-card {
   display: block;
   background: var(--card);
