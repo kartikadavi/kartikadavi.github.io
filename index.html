@@ -72,7 +72,7 @@
   <div class="prose">
     <p>I&rsquo;ve spent 8+ years inside the machinery of subscription businesses &mdash; most recently leading service operations at Hughes for <strong>500K+ customers</strong>. My portfolio sits exactly where the customer meets the P&amp;L: billing, field operations, network capabilities, vendor performance, customer communications.</p>
     <p>My rule of thumb: if something is expensive and nobody owns it, that&rsquo;s where I start. The confusing bill. The activation step nobody questioned. The vendor invoice nobody reconciled.</p>
-    <p>I lead three direct reports and work across Engineering, Care, Field, Sales, Marketing, and Legal. Senior enough to set the strategy, stubborn enough to still check the logs &mdash; I&rsquo;ve personally audited 10,000 call transcripts and read SIP traces when the data demanded it.</p>
+    <p>I lead four direct reports and work across Engineering, Care, Field, Sales, Marketing, and Legal. Senior enough to set the strategy, stubborn enough to still check the logs &mdash; I&rsquo;ve personally audited 10,000 call transcripts and read SIP traces when the data demanded it.</p>
   </div>
   <div class="principles">
     <p class="casefile-kicker">How I operate</p>
@@ -87,7 +87,7 @@
     <div class="stat"><span class="stat-num">8+</span><span class="stat-label">Years in operations</span></div>
     <div class="stat"><span class="stat-num">500K+</span><span class="stat-label">Customers in portfolio</span></div>
     <div class="stat"><span class="stat-num">2.2M</span><span class="stat-label">Payment activity run</span></div>
-    <div class="stat"><span class="stat-num">3</span><span class="stat-label">Direct reports</span></div>
+    <div class="stat"><span class="stat-num">4</span><span class="stat-label">Direct reports</span></div>
   </div>
 </section>
 
@@ -387,12 +387,37 @@
       <p>I built Gemini Gems for the audit work nobody had time for: sales call audits, call-center audits, and device-replacement cost opportunities. SIP call-flow Gems surfaced the dropped-call patterns behind our VoIP issues &mdash; new pattern signatures went into call tagging, and care agents got resolution steps. Pre-install call insights went into redesigned confirmation emails.</p>
       <p class="outcome"><strong>Pre-install calls down 25%.</strong></p>
     </div>
+    <div class="project">
+      <h4>Agents the team built, not just the ones I built</h4>
+      <p>I led my team to build AI agents using Copilot that automate customer friction-point reports from the services they manage &mdash; the reporting work that used to be assembled by hand, so the team spends its time acting on the friction instead of compiling it. It helped improve CSAT; I don&rsquo;t attach a single CSAT figure to this initiative, because that improvement is tracked at the portfolio level.</p>
+      <p class="outcome"><strong>Friction-point reporting, automated by the team that uses it.</strong></p>
+    </div>
+    <div class="project">
+      <h4>Vendor calls that can&rsquo;t go rogue</h4>
+      <p>I built a Python script with Copilot, plus PowerShell commands, to automate vendor API calls for account management. I have no coding background &mdash; Python used to intimidate me &mdash; so the guardrails are the point, not the code: controlled data, hardcoded values, and a checksum as a secondary gate to prevent unwanted changes, with before/after status logs for reconciliation. AI-assisted scripting, not software engineering.</p>
+      <p class="outcome"><strong>Automation that can&rsquo;t make a change it wasn&rsquo;t told to make.</strong></p>
+    </div>
     <p class="casefile-kicker">Independent applied work</p>
     <p class="ai-note">My own projects and portfolio learning &mdash; personal tooling, personal budget, and the discipline I&rsquo;d bring on day one.</p>
     <div class="project">
       <h4>Tested like it matters &mdash; for free</h4>
       <p>My own evaluation practice runs on a 40-case test set: held-out prompts across accuracy, grounding, refusal, privacy, and escalation, with risk scored as likelihood &times; impact &mdash; including residual risk after controls. Weekly reviews fine-tune the pipeline against the rubric, and the generator and the evaluator are never the same LLM: a different model judges every run. The whole thing runs on a Telegram bot + Replit with free open-source Groq models &mdash; keyword mapping handles the high-confidence cases, an LLM round-robin picks up the low-confidence ones when a model exhausts its free limits or fails. Cost was a design constraint from day one.</p>
       <p class="outcome"><strong>The evaluation discipline most teams skip.</strong></p>
+    </div>
+    <div class="casefile">
+      <p class="casefile-kicker">How this agent keeps improving &middot; not just what it built</p>
+      <h4>The resume builder, version by version</h4>
+      <p>The system behind my job search: live job-board data with my career evidence repository, evidence-grounded generation, LLM-as-a-judge evaluation, 13-point audit gates, fallback-based remediation, and mandatory human approval before anything ships &mdash; with $0 historical inference spend on free-tier models. The point isn&rsquo;t that I built it once. It&rsquo;s that every failure since has changed it, on purpose:</p>
+      <p><strong>Nov 11 &mdash; v2, baseline.</strong> Evidence-grounded generation, audit gates, independent judge, human approval. The rule from day one: a number ships only if it traces to the evidence bank.</p>
+      <p><strong>Nov 15 &mdash; amend1.</strong> Headcount corrected: 4 direct reports, stated only when a job description asks for people management &mdash; never by default.</p>
+      <p><strong>Nov 15 &mdash; amend2.</strong> An external audit&rsquo;s adopted fixes: plain-English product naming, B2B SaaS named as a declared gap instead of implied, and the $3M vendor scope corrected to managed, never renegotiated value.</p>
+      <p><strong>Nov 15 &mdash; amend3.</strong> Canonical project bullets, so the same project is told the same way every time, plus a check that the judge hasn&rsquo;t drifted from the audit.</p>
+      <p><strong>Nov 18 &mdash; amend4.</strong> Condensation for skim: bullets shortened without dropping mechanism or metric &mdash; the Bill Explainer bullet went from 35 words to 29 and kept its evidence.</p>
+      <p><strong>Nov 18 &mdash; amend5.</strong> Grounding hardened: employer name, location, and dates triple-checked against the bank, and the judge now scores skim and groundedness from a deterministic report &mdash; it never sees the evidence bank itself.</p>
+      <p><strong>Nov 20 &mdash; amend6.</strong> Cost cut: 10 files loaded per run became 4, about 10,700 fewer tokens, and the Q&amp;A bank split so builds load only answered rows.</p>
+      <p><strong>Nov 20 &mdash; amend7.</strong> A false-alarm fix: a digits-only wrapped bullet tail no longer fails as an unknown employer &mdash; and any employer not in the bank now fails as &ldquo;cannot be validated&rdquo; instead of slipping through.</p>
+      <p><strong>Nov 21&ndash;22 &mdash; the pipeline around it.</strong> Roles capped by the daily build limit now carry over to the next morning run instead of dropping, and builds dedupe against the tracker so the same role isn&rsquo;t built twice.</p>
+      <p class="outcome"><strong>The pattern: every change starts from a concrete failure or a measured cost, ships with tests, and stays reversible.</strong></p>
     </div>
     <div class="project">
       <h4>The RMF, in plain English</h4>
