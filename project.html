@@ -193,6 +193,21 @@ footer{padding:2.5rem 0 3rem;border-top:1px solid var(--line);color:var(--muted)
 <p class="note">Measured results beyond cost are not published here until they are instrumented. I do not publish invented performance numbers — pass rates, build counts, and agreement scores appear only once they are captured from real runs.</p>
 </div></section>
 
+<section id="failure"><div class="wrap">
+<h2>A failure mode, caught and fixed</h2>
+<p class="sub">The judge itself can hallucinate. Here is one failure mode the controls caught — and the fix that is now a standing step in every build.</p>
+<div class="tablewrap" style="overflow-x:auto"><table class="ledger" style="width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--line);border-radius:8px;overflow:hidden">
+<thead><tr><th scope="col" style="text-align:left;padding:.75rem 1rem;border-bottom:1px solid var(--line);font-weight:500;color:var(--muted)">Step</th><th scope="col" style="text-align:left;padding:.75rem 1rem;border-bottom:1px solid var(--line);font-weight:500;color:var(--muted)">What happened</th></tr></thead>
+<tbody>
+<tr><th scope="row" style="text-align:left;padding:.75rem 1rem;border-bottom:1px solid var(--line);vertical-align:top">Test input</th><td style="padding:.75rem 1rem;border-bottom:1px solid var(--line);vertical-align:top">A tailored resume and its job description, sent to the independent judge for scoring.</td></tr>
+<tr><th scope="row" style="text-align:left;padding:.75rem 1rem;border-bottom:1px solid var(--line);vertical-align:top">Expected</th><td style="padding:.75rem 1rem;border-bottom:1px solid var(--line);vertical-align:top">The judge scores only what the resume actually says.</td></tr>
+<tr><th scope="row" style="text-align:left;padding:.75rem 1rem;border-bottom:1px solid var(--line);vertical-align:top">Actual</th><td style="padding:.75rem 1rem;border-bottom:1px solid var(--line);vertical-align:top">The judge quoted a tenure line that appears nowhere in the resume — a hallucinated quote, presented as evidence for a finding.</td></tr>
+<tr><th scope="row" style="text-align:left;padding:.75rem 1rem;border-bottom:1px solid var(--line);vertical-align:top">Detection</th><td style="padding:.75rem 1rem;border-bottom:1px solid var(--line);vertical-align:top">Quote-check. Every judge finding is verified word-for-word against the resume text before it is acted on. The quoted line was not there.</td></tr>
+<tr><th scope="row" style="text-align:left;padding:.75rem 1rem;border-bottom:1px solid var(--line);vertical-align:top">Correction</th><td style="padding:.75rem 1rem;border-bottom:1px solid var(--line);vertical-align:top">The finding was declined. The resume shipped as audited — the judge is advisory and cannot block a build.</td></tr>
+<tr><th scope="row" style="text-align:left;padding:.75rem 1rem;border-bottom:0;vertical-align:top">Standing fix</th><td style="padding:.75rem 1rem;border-bottom:0;vertical-align:top">Quote-checking is now a required step in every build. No judge finding is acted on until its quoted line is verified in the resume.</td></tr>
+</tbody></table></div>
+</div></section>
+
 <section id="lessons"><div class="wrap">
 <h2>Lessons learned</h2>
 <div class="cols">
