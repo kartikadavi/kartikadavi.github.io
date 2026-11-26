@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evidence-Driven AI Workflow &amp; Governance Platform | Kartik Adavi</title>
+<meta name="description" content="How I designed and directed an evidence-grounded AI workflow that discovers roles, maps requirements to verified career evidence, and generates tailored resumes — with an independent LLM judge, governance controls, and $0 spend to date on free tiers.">
+<meta property="og:title" content="Evidence-Driven AI Workflow &amp; Governance Platform | Kartik Adavi">
+<meta property="og:description" content="Evidence-grounded generation, an independent LLM judge, hard quality gates, and human approval — built free-tier-first, $0 spend to date.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kartikadavi.github.io/project.html">
+<meta name="theme-color" content="#f5f7f9">
+<link rel="canonical" href="https://kartikadavi.github.io/project.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f7f9;--surface:#fff;--ink:#16202c;--muted:#515d6b;--line:#d6dde5;--accent:#1d5bb8;--accent-ink:#fff;--soft:#e8eff9;--win:#0d6b4f;
+--serif:"Newsreader",Georgia,"Times New Roman",serif;--sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+:root:not([data-theme="light"]){color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10161d;--surface:#18212b;--ink:#e8edf2;--muted:#a3afbc;--line:#2c3947;--accent:#7aa8ee;--accent-ink:#0b1420;--soft:#1c2a3d;--win:#59c9a0;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#10161d;--surface:#18212b;--ink:#e8edf2;--muted:#a3afbc;--line:#2c3947;--accent:#7aa8ee;--accent-ink:#0b1420;--soft:#1c2a3d;--win:#59c9a0;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+a:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:3px}
+.skip{position:absolute;left:-999px;top:0;background:var(--accent);color:var(--accent-ink);padding:.6rem 1rem;z-index:10}
+.skip:focus{left:0}
+.wrap{max-width:62rem;margin:0 auto;padding:0 1.25rem}
+header.top{border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;gap:1rem;align-items:center;justify-content:space-between;flex-wrap:wrap;padding-top:.9rem;padding-bottom:.9rem}
+.brand{font:600 1.05rem var(--sans);color:var(--ink);text-decoration:none}
+nav ul{display:flex;gap:1.25rem;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+nav a{color:var(--muted);text-decoration:none;font-size:.95rem}
+nav a:hover{color:var(--ink);text-decoration:underline}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.15;margin:0}
+h1{font-size:clamp(2rem,5.5vw,3.2rem);letter-spacing:-.01em;max-width:22ch}
+h2{font-size:clamp(1.6rem,3.5vw,2.1rem);margin-bottom:.5rem}
+h3{font-size:1.3rem;margin-bottom:.4rem}
+section{padding:3.5rem 0;border-top:1px solid var(--line)}
+.lede{font-size:1.2rem;max-width:42rem;color:var(--ink);margin:1.25rem 0 0}
+.sub{color:var(--muted);max-width:42rem;margin:0 0 1.75rem}
+.hero{padding:3.5rem 0 3rem}
+.pill{display:inline-block;font:600 .9rem var(--sans);color:var(--win);background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:.3rem .8rem;margin-bottom:1rem}
+.cols{display:grid;gap:2rem}
+@media (min-width:46rem){.cols{grid-template-columns:1fr 1fr}}
+.list{padding-left:1.1rem;margin:.5rem 0 0}
+.list li{margin:.4rem 0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:1.4rem}
+.card h3{margin-bottom:.5rem}
+.card p{margin:.4rem 0 0}
+.diagram{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:1.25rem;overflow-x:auto}
+.diagram svg{display:block;min-width:34rem;width:100%;height:auto}
+.stage rect{fill:var(--surface);stroke:var(--accent);stroke-width:1.5;rx:8}
+.stage text{fill:var(--ink);font-family:var(--sans)}
+.stage .t{font-size:15px;font-weight:600}
+.stage .s{font-size:12.5px;fill:var(--muted)}
+.cross rect{fill:var(--soft);stroke:var(--accent);stroke-width:1.5;rx:8}
+.cross text{fill:var(--ink);font-family:var(--sans)}
+.cross .t{font-size:14px;font-weight:600}
+.cross .s{font-size:12px;fill:var(--muted)}
+.arrow{stroke:var(--muted);stroke-width:2;fill:none}
+.dash{stroke:var(--muted);stroke-width:1.5;stroke-dasharray:5 4;fill:none}
+.dlabel{font-size:11.5px;fill:var(--muted);font-family:var(--sans);font-style:italic}
+.note{font-size:.95rem;color:var(--muted)}
+footer{padding:2.5rem 0 3rem;border-top:1px solid var(--line);color:var(--muted);font-size:.95rem}
+@media print{nav{display:none}body{background:#fff}section{padding:1.5rem 0}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+<a class="brand" href="index.html">Kartik Adavi</a>
+<nav aria-label="Primary"><ul>
+<li><a href="index.html#results">Results</a></li>
+<li><a href="index.html#ai">AI governance</a></li>
+<li><a href="index.html#experience">Experience</a></li>
+<li><a href="#how">How it works</a></li>
+<li><a href="index.html#contact">Contact</a></li>
+</ul></nav>
+</div></header>
+
+<main id="main">
+<section class="hero" id="top" style="border-top:0"><div class="wrap">
+<span class="pill">$0 spend to date · free-tier-first</span>
+<h1>Evidence-Driven AI Workflow &amp; Governance Platform</h1>
+<p class="lede">I designed and directed an AI-assisted workflow that discovers relevant roles, evaluates fit, maps job requirements to verified career evidence, and generates tailored resumes. Rather than trusting a model to produce a polished answer, the system verifies source information, validates generated claims, and uses an independent LLM judge for advisory quality assessment.</p>
+<p class="sub" style="margin-top:1rem">Applied AI engineering · LLM evaluation · AI governance · Workflow orchestration · Cost optimization · Human-in-the-loop controls · Continuous improvement.</p>
+</div></section>
+
+<section id="problem"><div class="wrap">
+<h2>The problem</h2>
+<p class="sub">Job search and resume tailoring involve the same repetitive work, role after role: discover openings, evaluate fit, map requirements to what you can actually prove, customize the resume, and check the result. Done by hand, the quality checks are the first thing to slip — and a polished resume with an unsupported claim is worse than no resume at all.</p>
+<div class="cols">
+<div class="card"><h3>What usually breaks</h3><p>Generative tools write confident, fluent resumes. Fluency is not evidence. Without a check that ties every number back to a source record, the output drifts — invented metrics, overstated scope, tools never used.</p></div>
+<div class="card"><h3>What this system does instead</h3><p>It treats the resume as a governed artifact: evidence first, generation second, and an independent judge that never sees the evidence bank — so it can only score what the resume itself proves.</p></div>
+</div>
+</div></section>
+
+<section id="how"><div class="wrap">
+<h2>How it works</h2>
+<p class="sub">Five stages, one role at a time. Two controls run across every stage: governance (traceability, groundedness, human oversight, version control) and cost engineering (free-tier-first routing, caching, token discipline, fallbacks).</p>
+<div class="diagram" role="img" aria-label="Five-stage workflow: Job Intelligence, Fit and Evidence, Grounded Generation, AI Quality Assurance, Delivery and Learning. AI Governance controls every stage; Cost Engineering optimizes model calls.">
+<svg viewBox="0 0 760 620" xmlns="http://www.w3.org/2000/svg">
+<!-- Stage 1 -->
+<g class="stage"><rect x="130" y="16" width="500" height="66" rx="8"></rect><text class="t" x="150" y="43">1 · Job Intelligence</text><text class="s" x="150" y="66">Discover roles · verify the source and the posting</text></g>
+<!-- Arrow 1-2 -->
+<path class="arrow" d="M380 82 L380 104"></path><path d="M374 100 L380 110 L386 100 Z" fill="var(--muted)"></path>
+<!-- Stage 2 -->
+<g class="stage"><rect x="130" y="110" width="500" height="66" rx="8"></rect><text class="t" x="150" y="137">2 · Fit &amp; Evidence</text><text class="s" x="150" y="160">Assess requirements · map strengths and gaps</text></g>
+<!-- Arrow 2-3 -->
+<path class="arrow" d="M380 176 L380 198"></path><path d="M374 194 L380 204 L386 194 Z" fill="var(--muted)"></path>
+<!-- Stage 3 -->
+<g class="stage"><rect x="130" y="204" width="500" height="66" rx="8"></rect><text class="t" x="150" y="231">3 · Grounded Generation</text><text class="s" x="150" y="254">Build the role-specific resume · verified experience only</text></g>
+<!-- Arrow 3-4 -->
+<path class="arrow" d="M380 270 L380 292"></path><path d="M374 288 L380 298 L386 288 Z" fill="var(--muted)"></path>
+<!-- Stage 4 -->
+<g class="stage"><rect x="130" y="298" width="500" height="66" rx="8"></rect><text class="t" x="150" y="325">4 · AI Quality Assurance</text><text class="s" x="150" y="348">Rule-based checks · independent LLM judge</text></g>
+<!-- Arrow 4-5 -->
+<path class="arrow" d="M380 364 L380 386"></path><path d="M374 382 L380 392 L386 382 Z" fill="var(--muted)"></path>
+<!-- Stage 5 -->
+<g class="stage"><rect x="130" y="392" width="500" height="66" rx="8"></rect><text class="t" x="150" y="419">5 · Delivery &amp; Learning</text><text class="s" x="150" y="442">Export and track · review gaps weekly</text></g>
+<!-- Governance box -->
+<g class="cross"><rect x="30" y="500" width="330" height="76" rx="8"></rect><text class="t" x="50" y="528">AI Governance</text><text class="s" x="50" y="550">Traceability · groundedness</text><text class="s" x="50" y="568">Human oversight · version control</text></g>
+<!-- Cost box -->
+<g class="cross"><rect x="400" y="500" width="330" height="76" rx="8"></rect><text class="t" x="420" y="528">Cost Engineering</text><text class="s" x="420" y="550">Free-tier-first routing · caching</text><text class="s" x="420" y="568">Token discipline · fallbacks</text></g>
+<!-- Dashed connectors -->
+<path class="dash" d="M195 500 L195 470 L130 470"></path>
+<path class="dash" d="M565 500 L565 470 L630 470"></path>
+<text class="dlabel" x="200" y="488">controls every stage</text>
+<text class="dlabel" x="430" y="488">optimizes model calls</text>
+</svg>
+</div>
+<p class="note" style="margin-top:1rem">The diagram is the portfolio-facing view: a recruiter or hiring manager should understand the system in under a minute. The operational version adds intake gates, fix rounds, and the judge fallback chain — the controls below describe those.</p>
+</div></section>
+
+<section id="stages"><div class="wrap">
+<h2>What each stage does</h2>
+<div class="cols">
+<div class="card"><h3>1 · Job Intelligence</h3><p>Roles are discovered from career sites and feeds, then the posting itself is verified against the official source — title, live status, date, sponsorship, and location — before any work starts. A build never begins on an unverified posting.</p></div>
+<div class="card"><h3>2 · Fit &amp; Evidence</h3><p>Each requirement is mapped to the evidence bank as Direct, Transferable, or Gap. Direct evidence leads; transferable evidence is framed honestly, translating the mechanism without implying processes never used; gaps stay visible, never keyword-papered.</p></div>
+<div class="card"><h3>3 · Grounded Generation</h3><p>The resume is drafted from the evidence map, with direct relevance first and one primary metric per bullet. Every claim must trace to a source record — an unbanked claim is flagged and rewritten to the strongest defensible version.</p></div>
+<div class="card"><h3>4 · AI Quality Assurance</h3><p>Deterministic checks come first: grounding (every number traced), mechanical gates (unsupported numbers, banned formats, weak openers, tense, owned tools), and a 13-point audit. Then an independent LLM judge scores fit, relevance, clarity, ATS alignment, groundedness, and risk — advisory only, never a blocker.</p></div>
+<div class="card"><h3>5 · Delivery &amp; Learning</h3><p>The audited resume is exported, synced, and tracked. Gaps, flags, audit findings, and judge results are reviewed weekly; recurring issues are classified and fixed through controlled changes with regression checks before they are promoted.</p></div>
+<div class="card"><h3>The ship rule</h3><p>A failed gate goes to a fix round — at most two. After two rounds, the strongest version ships with its findings recorded as flags. There is no blocked, no-output terminal state. Human judgment is the final gate: nothing is submitted without my review and my click.</p></div>
+</div>
+</div></section>
+
+<section id="models"><div class="wrap">
+<h2>Models used, in general</h2>
+<p class="sub">The chain is free-tier-first by design. Cost was a constraint from the start, not an afterthought — so the architecture routes to usable free-tier capacity before any paid inference, and falls back when a model hits a limit or returns an invalid response.</p>
+<div class="cols">
+<div class="card"><h3>Primary judge · Gemini 2.5 Flash (free tier)</h3><p>The independent judge. It scores the audited resume against the job description on a fixed rubric. It never sees the evidence bank or the build notes — it can only score what the resume itself proves. A different model family from the builder, so the judgment is independent of generation.</p></div>
+<div class="card"><h3>Fallback rungs · Groq, gpt-oss-120b / gpt-oss-20b (free tier)</h3><p>If the primary judge errors, rate-limits, or returns an invalid response, the chain falls to Groq's open-weight models — 120b first, then 20b. Groq never retries a rate limit; the chain moves to the next rung, never loops. There is no OpenAI API anywhere in this chain.</p></div>
+</div>
+<p class="note" style="margin-top:1.25rem">Model availability, free-tier terms, and rate limits are provider-controlled and can change. The models above are the currently configured chain. No credentials, API keys, or endpoints are exposed on this page — or anywhere on this site.</p>
+</div></section>
+
+<section id="governance"><div class="wrap">
+<h2>Governance controls</h2>
+<div class="cols">
+<div class="card"><h3>Fabricated claims → evidence bank</h3><p>Every number and claim traces to a source record. The grounding audit checks them all; unsupported claims are flagged, not shipped silently.</p></div>
+<div class="card"><h3>Wrong job info → official-source verification</h3><p>The intake gate verifies the posting is live on the official source before a build starts. Mirrors and aggregators do not count.</p></div>
+<div class="card"><h3>Inconsistent judgments → stable rubric</h3><p>The judge uses a byte-identical system rubric, versioned with the prompt. The role-specific context changes; the standard does not.</p></div>
+<div class="card"><h3>Outage or quota → bounded fallback chain</h3><p>If the judge is unavailable, the audited resume ships and the skip is recorded. The judge is advisory — its absence never blocks a build, and its verdict never overrides the audit.</p></div>
+<div class="card"><h3>Silent regression → fixed regression set</h3><p>Changes are tested against a fixed benchmark of conflict cases and end-to-end builds before promotion. A change that fails regression does not ship.</p></div>
+<div class="card"><h3>Automation overreach → human final gate</h3><p>The system prepares; I decide. No application is submitted without my review and my click, and a declined recommendation stays declined.</p></div>
+</div>
+</div></section>
+
+<section id="cost"><div class="wrap">
+<h2>Cost engineering — $0 to date</h2>
+<p class="sub">$0 total spend to date is a measured historical fact, not a promise. Free-tier terms are provider-controlled, so this is described as free-tier-first — not guaranteed zero-cost forever.</p>
+<ul class="list">
+<li><strong>Free-tier-first routing.</strong> Usable free-tier model capacity is preferred before any paid inference.</li>
+<li><strong>Fallbacks, not retries.</strong> When a model hits a limit or returns an invalid response, the chain moves to the next provider rung instead of retrying.</li>
+<li><strong>Caching where supported.</strong> Stable prompt content is cached where the provider supports it, so repeated calls cost less headroom.</li>
+<li><strong>Token discipline.</strong> Reusable system instructions stay separate from changing role-specific context; judge calls are limited and never retried on rate limits.</li>
+<li><strong>Hosting is free too.</strong> This site runs on GitHub Pages — no hosting bill, no paid services anywhere in the chain.</li>
+</ul>
+</div></section>
+
+<section id="improvement"><div class="wrap">
+<h2>Continuous improvement</h2>
+<p class="sub">The system improves by evaluation, not by retraining. No model weights are fine-tuned.</p>
+<ul class="list">
+<li>Failed builds, unsupported claims, evidence gaps, and human corrections are reviewed weekly.</li>
+<li>Each issue is classified as a data, prompt, rule, retrieval, model, or workflow problem — then a controlled change is made and regression-checked before promotion.</li>
+<li>What changed, why, and in which version is recorded, with a rollback path. A change that fails regression does not ship.</li>
+</ul>
+<p class="note">Measured results beyond cost are not published here until they are instrumented. I do not publish invented performance numbers — pass rates, build counts, and agreement scores appear only once they are captured from real runs.</p>
+</div></section>
+
+<section id="lessons"><div class="wrap">
+<h2>Lessons learned</h2>
+<div class="cols">
+<div class="card"><h3>Judge the judge</h3><p>An LLM judge can hallucinate — it has quoted lines that are not in the resume. Every finding is quote-checked against the resume before it is acted on. A score alone never changes a build.</p></div>
+<div class="card"><h3>Gates enforce the mechanical; humans judge the rest</h3><p>Verification scripts fail only on mechanical violations. Judgment calls surface as warnings. Failing a resume on a judgment call is how a process blocks output instead of improving it.</p></div>
+<div class="card"><h3>Never a blocked state</h3><p>Early designs had a terminal “blocked” outcome when gates failed. That was wrong — the operator's judgment is the final gate, so the strongest version ships with its findings as flags.</p></div>
+<div class="card"><h3>Cost shapes the architecture</h3><p>Free-tier limits forced real design decisions: a bounded fallback chain, caching, token discipline, and a judge that runs once per build. The constraint made the system better, not just cheaper.</p></div>
+</div>
+</div></section>
+
+<section id="contact"><div class="wrap">
+<h2>Want to talk about it?</h2>
+<p class="sub">If you hire for roles where AI has to be governed, not just demoed — or you want to see how an evidence-grounded workflow holds up under review — I’d like to talk.</p>
+<div class="cta" style="margin-top:0"><a class="btn primary" href="https://www.linkedin.com/in/kartikadavi" rel="noopener" style="display:inline-block;padding:.7rem 1.2rem;border-radius:6px;font-weight:600;text-decoration:none;border:2px solid var(--accent);background:var(--accent);color:var(--accent-ink)">Message me on LinkedIn</a></div>
+<p style="margin-top:1.5rem"><a href="index.html">← Back to the portfolio</a></p>
+</div></section>
+</main>
+
+<footer><div class="wrap">Kartik Adavi · Germantown, Maryland · Open to relocate and 25%+ travel · © 2026</div></footer>
+</body>
+</html>
