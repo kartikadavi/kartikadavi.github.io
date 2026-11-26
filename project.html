@@ -208,6 +208,31 @@ footer{padding:2.5rem 0 3rem;border-top:1px solid var(--line);color:var(--muted)
 </tbody></table></div>
 </div></section>
 
+<section id="council"><div class="wrap">
+<h2>What a multi-model council taught me</h2>
+<p class="sub">Adding more models did not automatically make the workflow more reliable. I ran a one-time council experiment to find out — and the lesson was that model diversity creates both benefits and risks. The fix was bounded prompts and verification, not more models.</p>
+
+<h3>Where we used it</h3>
+<p>One-time experiment, November 2026. Four models — Gemini 2.5 Flash, Groq gpt-oss-120b, Groq gpt-oss-20b, and Nemotron 3 Ultra — audited the resume builder on a single resume, each scoring it on the same criteria. $0 spent, free tiers only. This was an audit of the builder, not a production workflow: production uses a fallback chain and a dual judge, not a council.</p>
+
+<h3>What we saw</h3>
+<div class="cols">
+<div class="card"><h3>Inconsistent judgments</h3><p>The same resume, the same prompt — and the models disagreed widely. Cross-industry translation scored 4, 6, and 7 across the three models, the widest spread in the run. The conclusion in the experiment record: no consensus, so do not act on any single score.</p></div>
+<div class="card"><h3>Invented claims</h3><p>The models proposed a “roadmap health score 20%,” an “external roadmap,” a Jira feature-request intake system, “B2B SaaS platform” framing, and Discord/GitHub community analysis. Every one was verified false against the evidence bank and rejected. None of it was in the bank.</p></div>
+<div class="card"><h3>Agreement isn’t correctness</h3><p>All three models agreed the lead bullet mis-signaled — but the audit said the lead test passes. Both were true in different senses: the skim read one way, the subjects another. And one model’s four “integrity leaks” all collapsed on verification — its confidence was inversely proportional to its accuracy.</p></div>
+<div class="card"><h3>Settled questions, re-litigated</h3><p>Two of the three models treated declared gaps as ordinary omissions — the same error an earlier single judge had made. Without the gap dispositions in the prompt, the models kept re-arguing decisions that were already settled.</p></div>
+</div>
+
+<h3 style="margin-top:2rem">What we fixed</h3>
+<ul class="list">
+<li><strong>Citation rule.</strong> The revised prompt required every claim to cite its evidence. In the rerun, zero recurrences of the invented claims — the fabrications were gone, not just reduced.</li>
+<li><strong>One lens per model.</strong> Each model got a single role — recruiter skim, ATS/parser, hiring manager, integrity auditor — instead of every model judging everything. Narrower scope, fewer invented findings.</li>
+<li><strong>Verification before belief.</strong> Every model claim is checked against the source files before it is carried. A model’s say-so is never evidence on its own.</li>
+<li><strong>The council stayed an experiment.</strong> Production was not changed to a council. It still runs a fallback chain and a dual judge — because the experiment showed that more models need more validation, not less.</li>
+</ul>
+<p class="note" style="margin-top:1.25rem">The governance lesson: AI reliability is an architectural and governance decision, not a function of how many models participate. Evidence over consensus. Bounded model responsibilities. Independent validation. Controlled complexity. Human accountability — ambiguous or conflicting findings stay visible for human review instead of being converted into confident conclusions.</p>
+</div></section>
+
 <section id="lessons"><div class="wrap">
 <h2>Lessons learned</h2>
 <div class="cols">
